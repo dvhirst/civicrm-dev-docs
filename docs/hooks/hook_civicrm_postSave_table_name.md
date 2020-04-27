@@ -1,9 +1,9 @@
 # hook_civicrm_postSave_table_name
 
-## Description
+## Summary
 
 This hook is called after writing to a database table that has an
-associated DAO. This includes core tables but not custom tables or log
+associated DAO, including core tables but not custom tables or log
 tables.
 
 ## Parameters
@@ -12,7 +12,7 @@ $dao: The object that has been saved
 
 ## Definition
 
-    hook_civicrm_postSave_[table_name]($dao)
+    `hook_civicrm_postSave_[table_name]($dao)`
 
 ## Example
 

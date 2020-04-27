@@ -1,9 +1,12 @@
 # hook_civicrm_referenceCounts
 
-## Description
+## Summary
 
-This hook is called to determine the reference-count for a record. For
-example, when counting references to the activity type "Phone Call", one
+This hook is called to determine the reference-count for a record.
+
+## Notes
+
+For example, when counting references to the activity type "Phone Call", one
 would want a tally that includes:
 
 -   The number of activity records which use "Phone Call"
@@ -33,7 +36,7 @@ reference-counters.
 -   $refCounts: ***array***, each item in the array is an array with
     keys:
     -   name: ***string***, eg
-        "[sql:civicrm_email:contact_id](http://sqlcivicrm_emailcontact_id)"
+        "sql:civicrm_email:contact_id"
     -   type: ***string***, eg "sql"
     -   count: ***int***, eg "5" if there are 5 email addresses that
         refer to $dao

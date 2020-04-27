@@ -1,12 +1,17 @@
 # How to review a core pull request
 
-When someone [opens a pull request](core/contributing/#open-a-pull-request) (aka "PR") on CiviCRM Core, it must be reviewed before we can merge it. Reviewing core PRs is a useful (and often much-needed) way of contributing to CiviCRM. You do not need any special access or merge rights. What you do need, is...
+When someone [opens a pull request](../tools/git.md#pr) (aka "PR") on CiviCRM Core, it must be reviewed before we can merge it. Reviewing core PRs is a useful (and often much-needed) way of contributing to CiviCRM. You do not need any special access or merge rights. What you do need, is...
 
 * [GitHub Account](https://github.com)
 * A [CiviCRM Development Environment](https://github.com/civicrm/civicrm-buildkit/blob/master/doc/civibuild.md) (this might be optional, but good to have). One benefit is the ability to check out the PR in your environment.
 * Comfort reading code and patches
 
-Follow the remaining the steps below to review a pull request.
+## Video walk-through
+
+<div style="position:relative;padding-top:63%;">
+  <iframe src="https://www.youtube.com/embed/s7Tt5PGfHl4?rel=0" frameborder="0" allow="encrypted-media" allowfullscreen
+    style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+</div>
 
 ## Pick a PR
 
@@ -27,11 +32,9 @@ If you're a beginning developer looking for easy PRs to review, you might have g
 
 Add a comment to the PR like "Reviewing this now" to let others know that you intend to submit a review.
 
-
 ## Read about the issue
 
-Every PR *should* have an issue ID for [JIRA](https://issues.civicrm.org) linked from the PR's page on GitHub. Read the original issue and understand how to reproduce the problem and what the solution looks like as well.
-
+Many PRs will have an issue tracking ticket linked from the PR's page on GitHub. Read the original issue and understand how to reproduce the problem and what the solution looks like as well.
 
 ## Read the code changes
 
@@ -41,13 +44,11 @@ On the PR, click over to “Files Changed” and understand what the code is doi
 * Ensure it follows best practices. *(TODO: what best practice?)* (Note: basic code format standards are checked in the automated testing process.)
 * Consider whether any additional automated tests might be needed for this change. *(TODO: how should I know?)*
 
-
 ## Reproduce the problem
 
-Confirm which branch the PR was created against. This is probably either `master` or the LTS. Setup an instance locally from that branch (e.g. with [buildkit](https://github.com/civicrm/civicrm-buildkit)), or test on the [public demo site if possible](https://civicrm.org/demo). Repeat the steps to reproduce described in the Jira Issue.
+Confirm which branch the PR was created against. This is probably either `master` or a Release Candidate branch. Setup an instance locally from that branch (e.g. with [buildkit](https://github.com/civicrm/civicrm-buildkit)), or test on the [public demo site if possible](https://civicrm.org/demo). Repeat the steps to reproduce described in the ticket or PR.
 
 Confirm that the issue was a problem and a problem “worth solving”, generally worthy of being in core.
-
 
 ## Reproduce the fix
 
@@ -63,8 +64,8 @@ Our test server automatically creates a dedicated CiviCRM installation for every
 1. Go to: "Show all checks" > "Details" > "Console Output" > "Full Log"
 1. Search in page for `CMS_URL`
 1. The first result should bring you to a URL which points to an installation for the build of this PR.
-1. Click on the URL to go to the built site and log in with username = `pradmin` and password = `pradmin1234`
-
+1. Click on the URL to go to the built site 
+1. To get login credentials click on "test sites" link from Civibot's (Standard links) comment on the PR
 ### Reviewing locally
 
 For more complicated PRs it is sometimes helpful or necessary to manually test them within a local development installation.
@@ -79,7 +80,7 @@ An easy way to do this is:
 
 1. Install [Hub](https://hub.github.com/)
 1. `cd` to your `civicrm` root directory
-1. Run `git checkout https://github.com/civicrm/civicrm-core/pull/1234` where `1234` is the PR number you're reviewing
+1. Run `hub checkout https://github.com/civicrm/civicrm-core/pull/1234` where `1234` is the PR number you're reviewing
 
 #### If the PR contains database upgrades
 
@@ -87,20 +88,14 @@ An easy way to do this is:
 
 1. Install a buildkit site for the latest publicly available release of CiviCRM (*not* `master`). Pass the `--civi-ver` option to civibuild for this.
 1. Update the `civicrm` directory files so that the codebase has the changes in the PR (perhaps by using [Hub](https://hub.github.com/) as described above).
-1. From the `civicrm` directory, run `./bin/setup.sh -Dg` to update the generated-code
-1. Run `drush civicrm-upgrade-db` to perform database upgrades
-
-
-## Form an opinion about the fix
-
-* The change should make sense for *all users*.
-* The change should not take users by surprise.
-* Significant changes should add functionality in a generalized way that is configurable.
+1. From the `civicrm` directory, run `./bin/setup.sh -Dg` to update the generated-code.
+1. Run `drush civicrm-upgrade-db` to perform database upgrades.
 
 
 ## Write a review as a comment
 
-Summarize your actions and findings, and recommend specific next steps (e.g. merging or otherwise). In your comment, tag [one of the active contributors](https://github.com/civicrm/civicrm-core/graphs/contributors) (e.g. `@eileenmcnaughton`) so they will see that the PR is ready for further action.
-
-
+1. Evaluate the change against each of our [review standards](../standards/review.md) criteria.
+1. If you like, copy-paste one of the [review templates](../standards/review.md#templates) into your comment and fill out the template. 
+    * If you choose not to use a template, then summarize your actions and findings, and recommend specific next steps (e.g. merging or otherwise).
+1. In your comment, tag [one of the active contributors](https://github.com/civicrm/civicrm-core/graphs/contributors) (e.g. `@eileenmcnaughton`) so they will see that the PR is ready for further action.
 

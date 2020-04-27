@@ -1,13 +1,20 @@
 # hook_civicrm_links
 
-## Description
+## Summary
 
-This hook is an opportunity to modify action links in CiviCRM.  These
-include the actions at the end of a search result row, the Create New
+This hook allows you to modify action links including:
+the actions at the end of a search result row, the Create New
 dropdown, and the Actions dropdown at the top of a contact record.
 
-Note: remember to use the string processing functions of your host
-framework ( `ts()` for CiviCRM extensions, `t()` for Drupal modules, etc).
+
+## Notes
+
+!!! tip
+    Remember to use the string processing functions of your host framework ( `ts()` for CiviCRM extensions, `t()` for Drupal modules, etc).
+
+!!! warning
+    The operation `create.new.shorcuts` is now deprecated and has been replaced with the correctly spelled `create.new.shortcuts`.
+
 
 ## Definition
 
@@ -22,10 +29,10 @@ hook_civicrm_links($op, $objectName, $objectId, &$links, &$mask, &$values)
     `pdfFormat.manage.action`
 
 -   string `$objectName` - the entity the links relate to (or `NULL` if `$op` is
-    `create.new.shorcuts`)
+    `create.new.shortcuts`)
 
 -   int `$objectId` - the CiviCRM internal ID of the entity (or `NULL` if `$op`
-    is `create.new.shorcuts`)
+    is `create.new.shortcuts`)
 
 -   array `$links` - the links to modify in place
 
@@ -97,7 +104,7 @@ function MODULENAME_civicrm_links($op, $objectName, $objectId, &$links, &$mask, 
           $values['thingId'] = 'mything';
           break;
 
-        case 'create.new.shorcuts':
+        case 'create.new.shortcuts':
           // add link to create new profile
           $links[] = array(
             'url' => '/civicrm/admin/uf/group?action=add&reset=1',
@@ -105,6 +112,10 @@ function MODULENAME_civicrm_links($op, $objectName, $objectId, &$links, &$mask, 
              // old extensions using 'title' will still work
           );
           break;
+        case 'view.report.links':
+          // disable copy & delete links.
+          unset($links['copy']);
+          unset($links['delete']);
       }
   }
   return $myLinks;

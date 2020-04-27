@@ -1,8 +1,12 @@
 # hook_civicrm_entityTypes
 
-## Description
+## Summary
 
-This hook is called for declaring managed entities via API. [See this tutorial](/extensions/civix/#generate-entity) for a more complete description of creating a managed entity.
+This hook is used to declare a new type of entity, for example a booking extension might want to declare a *Resource* entity.
+
+## Notes
+
+[See this tutorial](../extensions/civix.md#generate-entity) for a more complete description of creating new types of entities.
 
 ## Definition
 

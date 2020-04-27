@@ -1,9 +1,9 @@
 # hook_civicrm_merge
 
-## Description
+## Summary
 
 This hook allows modification of the data used to perform merging of
-duplicates. This can be useful if your custom module has added its own
+duplicates. It can be useful if your custom module has added its own
 tables related to CiviCRM contacts.
 
 ## Availability
@@ -19,7 +19,7 @@ hook_civicrm_merge($type, &$data, $mainId = NULL, $otherId = NULL, $tables = NUL
 ## Parameters
 
 -   string `$type` - the type of data being passed
-    (`cidRefs`, `eidRefs`, `relTables`, or `sqls`)
+    (`cidRefs` (deprecated, hook will no longer be called at some point for this), `eidRefs`, `relTables`, or `sqls`)
 -   array `$data` - the data, which depends on the value of `$type` (see Details)
 -   int `$mainId` - ID of the contact that survives the merge (only
     when `$type` is `sqls`)
@@ -51,6 +51,7 @@ passed:
     merge operation.  These SQL statements are run within a single transaction.
 
 -   `cidRefs`:
+    this is deprecated in favour of the entityTypes hook. If you alter cidRefs you will get a deprecation warning
     an array of tables and their fields referencing
     civicrm_contact.contact_id explicitly.  Each table in the array has this format:
 
@@ -106,10 +107,7 @@ function civitest_civicrm_merge($type, &$data, $mainId = NULL, $otherId = NULL, 
       break;
 
     case 'cidRefs':
-      // Add references to civitest_foo.contact_id, and civitest_foo.foo_id, both of which
-      // are foreign keys to civicrm_contact.id.  By adding this to $data, records in this
-      // table will be automatically included in the merge.
-      $data[$db_default . 'civitest_foo'] = array('contact_id', 'foo_id');
+      // Use entityTypes hook instead as cidRefs is deprecated in this hook.
       break;
 
     case 'eidRefs':

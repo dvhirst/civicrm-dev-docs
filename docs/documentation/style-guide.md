@@ -1,40 +1,48 @@
 # Documentation style guide
 
 All CiviCRM guides *(like this Developer Guide)* are intended to provide
-high-quality "finished" [documentation](/documentation/index.md)
+high-quality "finished" [documentation](index.md)
 about CiviCRM. This Style Guide page documents the standards we wish to
 uphold to ensure all guides maintain this high level of quality.
 
-## Parts, chapters, sections
+## General guidelines
 
-Similar to most text books and manuals, we divide our guides into "parts",
-"chapters", and "sections". In mkdocs, these blocks translate as follows:
+### Docs nomenclature {:#nomenclature}
 
--   "part" - folder
--   "chapter" - file (in markdown), also one web page with a given URL
--   "section" - heading within the page
+To streamline communication about documentation issues, we define the following terms:
+
+-   "Chapter" - folder
+-   "Sub-chapter" - a folder within a folder
+-   "Page" - file (in markdown)
+-   "Section" - heading within the page
+
+### Page names
 
 In the navigation menu (as stored in `mkdocs.yml`):
 
--   Keep the page hierarchy to the depth described above
-    (i.e. do not put folders within other folders).
--   Each chapter name should be short enough to fit nicely in the menu,
+-   Each page name should be short enough to fit nicely in the menu,
     but also long enough to stand on its own to a reasonable extent.
     The titles set here are used in the navigation menu *and* the page title
     that displays in the browser tab. The guide will be more usable if the
     reader sees two tabs titled "Using Hooks" and "API Usage" instead of
     "Usage" and "Usage".
+    
+### Introductory paragraphs
 
-Each chapter should start with a paragraph that explains what will be
-covered in the chapter.
+Each page should start with a paragraph that explains what will be
+covered in the page.
+
+### Cumulative concepts
 
 Effort should be given to arrange all content within a guide so that skills and
 concepts which build upon one another are presented sequentially.
 Although guides should not require start-to-finish reading, providing the
 option (when possible) is helpful to some readers.
 
+### Cross-references
+
 Don't use terms like "previous chapter", etc. because we may add or re-arrange
-chapters in the future. Instead, use a hyperlink to the chapter.
+pages in the future. Instead, use a hyperlink to the page, or ideally to the specific section within the page.
 
 ### Hackable URLs
 
@@ -42,46 +50,56 @@ When you organize several markdown files into one folder, it's good practice to 
 
 ### Headings
 
-The first heading in a chapter should be Heading 1. All others should be
+The first heading in a page should be Heading 1. All others should be
 in H2 and H3, only where necessary.  If you find yourself wanting to use
-H4, consider if it's truly necessary and whether the chapter should
+H4, consider if it's truly necessary and whether the page should
 instead be refactored.
 
-### Capitalization
+### Title capitalization
 
-Titles for parts, chapters, and sections should all be in sentence case
+Titles for chapters, pages, and sections should all be in sentence case
 (first word capitalized), not headline case (each word capitalized).
 
-## Formatting conventions
+## Describing the CiviCRM user interface
 
-### Describing the CiviCRM user interface
+### Bold for things you click
 
 Menu selections, buttons, tabs (basically, things that the reader is
 being told to click) should be in bold.
+
+For example:
 
 -   Navigate to **Administer > CiviEvent > Event Types** to review the
     default list of event types.
 -   Modify event type labels by clicking **Edit** on any row.
 -   Click **Add Event Type** to create a new category for your events.
 
-Elements of the system and interface should be capitalized (e.g., the
+### UI element capitalization
+
+Elements of the system and interface should be capitalized (e.g. the
 Events component, the Template Title field).
 
 It is also sometimes helpful for clarity when discussing concepts to use
 capitalization to distinguish between a specific activity within CiviCRM
-and a generic activity (e.g., the Send Email activity versus sending an
+and a generic activity (e.g. the Send Email activity versus sending an
 email). However, sometimes it is too cumbersome or just plain weird to
 capitalize every instance of a term even if it refers to a specific CiviCRM
-thing or technical definition (e.g., scheduled reminders, plain text).
+thing or technical definition (e.g. scheduled reminders, plain text).
 Use your best judgment as to what serves the reader; trying to enforce
 consistency in this arena will slow us down or drive us crazy.
 
+### Quotes
+
 Quotes should be avoided as much as possible; however, do use them when
-they seem necessary for clarity (e.g., if you are talking about setting
+they seem necessary for clarity (e.g. if you are talking about setting
 or field labels that are long phrases).
+
+### Types of CiviCRM pages
 
 You can divide the CiviCRM interface into administration pages and
 public-facing pages.
+
+## Formatting conventions
 
 ### Bullets and numbered lists
 
@@ -111,7 +129,7 @@ Alternative Text  (ALT Tags) should be included for every image.
 
 ### Machine-readable symbols
 
-Machine-readable symbols (e.g. files names, classes, functions, variables, database tables, database columns, commands, etc.) should be formatted either with inline monospace or preformatted code blocks (also in monospace). See the [markdown syntax](/markdownrules/#code) to use for such formatting.
+Machine-readable symbols (e.g. files names, classes, functions, variables, database tables, database columns, commands, etc.) should be formatted either with inline monospace or preformatted code blocks (also in monospace). See the [markdown syntax](markdown.md#code) to use for such formatting.
 
 ### URLs
 
@@ -148,25 +166,17 @@ Below are our preferred spellings of CiviCRM-specific words:
 ### Terminology
 
 -   **contact** - a contact record within CiviCRM
--   **organisation/organization** - a non-profit (or other community group,
-    etc) who is (or could be) using CiviCRM
--   **user** - a person who interacts with CiviCRM via the front end
--   **site admin** - a staff member (of an organisation) who regularly
-    administers CiviCRM from the front end. (By definition these people are
-    also "users".)
--   **system administrator** - a technical person who administers CiviCRM from
-    the back end
+-   **organisation/organization** - an organisation that uses (or is evaluating) CiviCRM
+-   **user** - a person who interacts with CiviCRM via the user interface
+-   **site admin** - a *user* who administers CiviCRM via the administration pages
+-   **system administrator** - a technical person who administers the CiviCRM system above and beyond the user interface
 -   **hosting provider**
-    -   In the User Guide - synonymous with *"system administrator"*
-    -   In other guides - a person or company that owns and/or maintains the
-        server upon which CiviCRM runs
--   **developer** - a computer programmer who writes code to improve or extend
-    the functionality, stability, or security of CiviCRM
+    -   in the User Guide - synonymous with *system administrator*
+    -   in other guides - a person or company that owns and/or maintains the server upon which CiviCRM runs
+-   **developer** - a computer programmer who writes code to improve or extend the functionality, stability or security of CiviCRM
 -   **core team**
-    -   In the User Guide - *should be avoided. Use "CiviCRM" or "the CiviCRM
-        community".*
-    -   In other guides - refers to the
-        [core team](https://civicrm.org/teams/core-team)
+    -   in the User Guide - *should be avoided* - use "CiviCRM" or "the CiviCRM community"
+    -   in other guides - refers to the  [core team](https://civicrm.org/teams/core-team)
 
 ### Gender neutrality
 
@@ -230,4 +240,29 @@ out there (setting up an SSL certificate, configuring CiviMail etc.) and point
 them in the right direction when they want to know about those tasks.
 
 
+### Shell Commands in documentation.
 
+When writing shell commands in documentation as examples, for any commands that are expected to be typed out by the user a `$` should be put in front of the command. e.g.
+
+```shell
+$ cd ~/buildkit/build/drupal-demo/sites/all/modules/civicrm
+$ civibuild create drupal-demo --civi-ver master --url http://localhost:8001
+$ hub fork
+```
+
+The output of a shell command should not have a `$` prepended. e.g.
+
+```shell
+$ git remote -v
+origin  https://github.com/civicrm/civicrm-core.git (fetch)
+origin  https://github.com/civicrm/civicrm-core.git (push)
+yourusername      git@github.com:yourusername/civicrm-core.git (fetch)
+yourusername      git@github.com:yourusername/civicrm-core.git (push)
+```
+
+Authors should also not put any comments within the examples themselves, whereas any comments should go outside of the code block in regular paragraphs. Where possible each command should be its own comment block. When it is crucial for the user to understand the directory in which to run the command, include a separate code block before hand with a `cd` command.
+
+!!! tip "Write portable shell commands"
+
+    Most system administrators use `bash` as their interactive command-line, but some administrators customize their systems to use `csh`, `zsh`, or similar. 
+    These systems are usually very similar -- but may differ if there are complex conditionals, job-controls, etc. See [bash-hackers.org](http://wiki.bash-hackers.org/scripting/nonportable) for tips on writing portable shell commands.
