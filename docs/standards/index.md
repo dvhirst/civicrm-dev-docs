@@ -11,7 +11,7 @@ function, line and other levels.
 Developers are encouraged to take these standards as an expression of
 "what we want" more than of "what we have everywhere."  This means that
 if you find yourself working on a piece of code that doesn't follow
-these standards, you are encouraged to re-factor it so that it is. IRC
+these standards, you are encouraged to re-factor it so that it is. [CiviCRM Chat](https://chat.civicrm.org/civicrm/channels/town-square)  
 is a good place to come if you have questions or need clarification.
 
 Quite a few blog posts have been written over the years in the
